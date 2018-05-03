@@ -1,29 +1,17 @@
 #'
 #'
-#############################################################
-# Graphe avec spatialisation  Fruchterman Reingold
+#Intallation des packages (une fois)
+#install.packages("twitteR") #une fois
+#install.packages("tm") #une fois
+#install.packages("qdap") #une fois
+#install.packages("wordcloud")
 
-#Préparation du layout Fruchterman Reingold
-lwithfr <- layout_with_fr(network, coords = NULL, dim = 2, niter = 500,
-                          start.temp = sqrt(vcount(network)), grid = "auto")
 
-#Plot du Graphe
-plot.igraph(network, layout= lwithfr,
-            main = paste(myWebsite,"\nfruchterman.reingold"),
-            vertex.size        = map(pr$vector, c(2,30)), 
-            vertex.color        = mapColorByHTTPStatus(NetwNodes$IntermediateHttpStat),
-            vertex.frame.size = 0.1,
-            vertex.label=NewIndexLabel$UrlLabel,
-            vertex.label.color="white",
-            vertex.size=1,
-            edge.curved = TRUE,
-            edge.lty=1,
-            edge.size = .1,
-            edge.width = map(E(network)$Weight, c(.1,20)),
-            edge.arrow.size=0.0001
-)
-
-#'
+#Chargement des bibliothèques
+library(twitteR) #pour accéder à l'api Twitter.
+library(tm) #pour le text mining : Vectorsource(), VCorpus() et le nettoyage removeSparseTerms
+library(qdap) #Aussi pour text mining et nettoyage de texte 
+library(wordcloud) #Nuages de mots clés.
 #'
 #Indiquer les clés et les jetons de votre API https://apps.twitter.com/  (ici mes clés de New-Test-TwitteR : 
 #merci d'utiliser les vôtres, de toute façon je vais supprimer ces codes :-))
